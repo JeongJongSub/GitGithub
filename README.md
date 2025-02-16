@@ -7,6 +7,7 @@
 ```mermaid
 sequenceDiagram
 Client ->> Server : [Request] index.html
+Server ->> Controller : index.do
 Server ->> Client : [Response] index.html
 
 

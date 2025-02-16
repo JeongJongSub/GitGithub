@@ -1,0 +1,13 @@
+#GitHub Test Page
+## & MyPage
+
+> 마크다운 문법 테스트
+> > mermaid를 이용한 그래프 그리기
+```mermaid
+sequenceDiagram
+Spring Boot
+Client -->> Server : [Request] index.html
+Server -->> page : [Response] index.html
+
+
+```

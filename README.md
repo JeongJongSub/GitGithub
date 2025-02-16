@@ -8,6 +8,7 @@
 sequenceDiagram
 Client ->> Server : [Request] index.html
 Server ->> Controller : index.do
+Controller ->> Sever : index.html
 Server ->> Client : [Response] index.html
 
 

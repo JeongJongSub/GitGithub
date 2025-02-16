@@ -6,8 +6,8 @@
 > > 
 ```mermaid
 sequenceDiagram
-Client ->> Server : [Request] index.html
-Server ->> Controller : index.do
+Client <<-->> Server : [Request] index.html
+Server <<->> Controller : index.do
 Controller ->> Server : index.html
 Server ->> Client : [Response] index.html
 

@@ -8,7 +8,29 @@
 <body>
     <script>
         /*크롭앱을 바닐라 자바스크립트로 만들기*/
+
+
+        /*Conditionals*/
+        //if와 else
+        const age = parseInt(prompt("How old are you?"));
+
+        // "15" => 15 :parseInt()를 쓰자!
+        //number가 아니면 NaN (Not a Number)
+        //자바스크립트에서 타입을 알아내는 방법은 typeof(age)
+        console.log(age,  parseInt(age));
         
+        //number인지 아닌지 => false면 숫자다!
+        console.log(isNaN(age));
+
+        //if문
+        if(isNaN(age)){
+            console.log("please write a number")
+        } else {
+            console.log("Thank you for writing your age.")
+        }
+
+
+
     </script>
 </body>
 </html>

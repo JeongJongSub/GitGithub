@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //함수선언문
+    //함수 선언문 같은경우도 호이스팅이 일어난다.
+    a();
+
+    function a() {
+      console.log("test A");
+    }
+
+//////////////////////////////////////////////////////////////////////////////////////////
+
+
+    // b(); 
+    // 함수표현식은 호이스팅이 일어나지 않는다.
+
+    //함수표현식
+    const b = function(){
+      console.log("함수표현식")
+    }
+    b();
+
+
+//////////////////////////////////////////////////////////////////////////////////////////
+/* ※정리※ */
+/*
+- 함수선언식은 호이스팅이 일어난다.
+- 함수표현식은 호이스팅이 일어나지 않는다.
+AirBnb의 JS Style가이드에서 함수선언식보다는 함수표현식을 지향
+*/
+
+
+//////////////////////////////////////////////////////////////////////////////////////////
+/* 애로우함수 */
+//람다함수와 비슷함
+//const 변수명=(입력)=>출력
+//단, 애로우함수가 기존의 함수선언문이나 함수표현식을 완전히 대신할 수 없다.
+// const a = (x) =>{return x;};
+// const erroew = () => {console.log('Hello');};
+//(짧게 표현하기)
+const erroew = () => 'Hello';
+console.log(erroew());
+//인자가 하나일때는 괄호(()) 생략가능
+//명령어가 하나일때는 중괄호({}) 생략가능
+
+//////////////////////////////////////////////////////////////////////////////////////////
+const c = (x='기본값') => x+100;
+console.log(c());
+
+const obj = {
+ name: 'KOSMO',
+ goodBy:function(){console.log('GoodBy! '+this.name)}      
+};
+ obj.goodBy();
+
+ const obj2 = {
+ username: 'KOSMO',
+ goodBy:()=>console.log('GoodBy! '+this.username)//이때 this.는 window     
+};
+ obj2.goodBy();
+//this키워드 사용시 애로우를 사용하면 아된다.
+
+// const button = document.getElementById('button');
+// button.addEventListener('click', function(){
+//   console.log(this); // button
+//   this.innerHTML = '클릭해주세요';
+// });
+
+
+//////////////////////////////////////////////////////////////////////////////////////////
+/* 클래스 정의 */
+//클래스선언문은 호이스팅이 되지 않는다.
+class Person{
+  constructor(username='기본값'){
+    this.username = username;
+  }
+   printName() {
+    console.log(this.username);
+  }
+}
+const person = new Person('나길동');
+console.log(person.username)
+console.log(person.printName())
+
+
+
+
+
+
+    
+  </script>
+  <button id="button">버튼</button>
+</body>
+</html>

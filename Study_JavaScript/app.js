@@ -1,1 +1,1 @@
-document.title = 'hi';
+//JavaScript app.js

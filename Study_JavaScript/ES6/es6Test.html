@@ -6,7 +6,81 @@
   <title>Document</title>
 </head>
 <body>
+  <!-- 프로토타입 공부용용 -->
+  <p id="demo"></p>
+  <!--  -->
+
+
   <script>
+//////////////////////////////////////////////////////////////////////////////////////////
+/* 프토토타입 공부 */
+//자스의 모든 객체는 프로토타입객체를 가지고 있다.
+//프로토타입객체,체인,상속이 있다.
+//프로토타입객체 : 해당객체가 사용할 수 있는 메소드와 속성을 정의한다.
+//프로토타입체인 : 객체는 체인을 따라 상속받은 메서드와 속성을 찾는다.
+//프로토타입상속 : 객체는 다른 객체의 프로토타입을 상속받아 메서드와 속성을 공유할 수 있다.
+
+ //생성자 함수 정의
+ /*
+function Saram(name,age){
+      this.name = name;
+      this.age = age;
+  }
+Saram.prototype.greet = function(){
+  console.log('hello, proto')
+};
+
+    Person.prototype.nationality = "English";
+
+    const myFather = new Saram("John","Doe",50,"blue");
+    const myMother = new Saram("Sally","Rally",48,"green");
+
+    document.getElementById("demo").innerHTML = 
+    "The nationality of  my father is "+ myFather.nationality;
+*/
+//////////////////////////////////////////////////////////////////////////////////////////
+
+
+const button = document.querySelector('button');
+    /*
+    button.addEventListener('click',function(){
+      console.log(`this는 ${this}`);
+      console.log(this === window);
+      console.log(this === button);
+    });
+    */
+   /*
+    button.onclick = function () {
+      console.log(`this는 ${this}`);
+      console.log(this === window);
+      console.log(this === button);
+    };
+    */
+
+
+    function print() {
+      console.log(this);
+    }
+    print();
+
+const person1 = {username:"kim"};
+const person2 = {username:"lee"};
+
+const print1 = print.bind(person1);
+const print2 = print.bind(person2);
+
+
+
+print1();
+print2();
+
+
+const print3 = print2.bind({username:"park"})
+print3();
+
+
+//////////////////////////////////////////////////////////////////////////////////////////
+
     //함수선언문
     //함수 선언문 같은경우도 호이스팅이 일어난다.
     a();
@@ -89,13 +163,123 @@ const person = new Person('나길동');
 console.log(person.username)
 console.log(person.printName())
 
+//클래스 표현식 (잘않쓴다.)
+const Person2 = class{
+  constructor(username){
+    this.username = username;
+  }
+}
+
+//클래스 메소드 : 생성자
+class Student extends Person{
+  constructor(username,stNumber){
+    super(username);
+    this.stNumber = stNumber;
+  }
+  printStudent(){
+    console.log(this.stNumber, this.name)
+    console.log('학생입니다')
+  }
+  
+  static staticMethod(x,y){
+    console.log(this.username); //인스턴스가 되어있지 않으니 undefined, 의미가 없다.
+    console.log('정적메소드')
+    return x+y;
+  }
 
 
 
+}
+
+// const child1 = new Student()
+// child1.printStudent();
+// child1.printName();
+
+
+const child1 = new Student('와우',30);
+console.log(child1);
+
+//정적메소드는 클래스명으로접근한다.
+console.log(Student.staticMethod(1,10));
+
+
+
+'use strict'
+username = '가길동';
+console.log(username);
+
+//////////////////////////////////////////////////////////////////////////////////////////
+/* import와 export */    
+//페이지 방식
+  </script>
+  <!-- 페이지 방식 : 아래 스크립트 위치가 중요하다. -->
+  <script src="a.js"></script>
+  <script src="c.js"></script>
+  <script src="b.js"></script>
+  <script>
+    console.log(username);
+  </script>
+
+<!-- 위 내용을 더 깔끔하게 모듈화로 묶어서 보내버리기 -->
+  <script type="module">
+    import arr,{username,obj} from './exa.js';
+    console.log(username);
+    console.log(obj);
+    console.log(arr)
+    
+    import exb_username,{add,minus} from './exb.js';
+    console.log(exb_username);
+    console.log(add(10,20));
+    console.log(minus(10,20));
+
+    import exc_username from './exc.js';
+    console.log(exc_username);
 
 
     
+    //Babel : ES6 -> ES5로 트랜스파일러 해주는 것것
+    //Webpack : 번들러라고 하는데 여러 모듈을 하나로 묶는걸 말한다.
+    //export는 여러번
+    //export default는 한번만 사용 가능하다.
   </script>
+
+<script type="module">
+  import './index.js'
+
+
+//////////////////////////////////////////////////////////////////////////////////////////
+  /* Spread연산자 */
+  //Iterable Object : 반복가능한 객체
+  //반복가능한 객체를 전개하는 전개연산자라고 한다.
+  console.log('--------------------------▼')
+  const arr1=[1,2,3];
+  const arr2=[4,5,6];
+  const arr3 = [...arr1,...arr2,7,8,9]
+  console.log(arr3);
+
+  const object1={name:'가길동',age:20};
+  const object2={
+    name:'나길동',
+    age:40,
+    addr:'가산동',
+    company:{
+      name:'코스모',
+      contacts:
+      {tel:'010-123-4567', mobile:'010-999-9999'}
+
+    }
+};
+
+const object3= {...object2, ...object1,company:{...object2.company,contacts:{...object2.company.contacts,tel:'111-1111-1111'}}};
+console.log(object3);
+console.log(object3.company.contacts.tel);
+
+
+
+
+</script>
+
+
   <button id="button">버튼</button>
 </body>
 </html>

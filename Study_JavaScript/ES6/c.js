@@ -1,0 +1,1 @@
+var username = '씨길동'

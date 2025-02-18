@@ -1,0 +1,1 @@
+const config = {apiKey:'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'}

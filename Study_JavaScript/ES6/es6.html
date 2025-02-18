@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>es6</title>
+</head>
+
+<body>
+  <button>버튼</button>
+  <script>
+    const button = document.querySelector('button');
+    /*
+    button.addEventListener('click',function(){
+      console.log(`this는 ${this}`);
+      console.log(this === window);
+      console.log(this === button);
+    });
+    */
+   /*
+    button.onclick = function () {
+      console.log(`this는 ${this}`);
+      console.log(this === window);
+      console.log(this === button);
+    };
+    */
+
+
+    function print() {
+      console.log(this);
+    }
+    print();
+
+const person1 = {username:"kim"};
+const person2 = {username:"lee"};
+
+const print1 = print.bind(person1);
+const print2 = print.bind(person2);
+
+
+
+print1();
+print2();
+
+
+const print3 = print2.bind({username:"park"})
+print3();
+
+
+</script>
+</body>
+
+</html>

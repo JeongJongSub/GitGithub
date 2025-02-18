@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>prototype_my.html</title>
+</head>
+<body>
+
+  <p id="demo"></p>
+
+  <script>
+    
+    //생성자 함수 정의
+    function Person(first,last,age,ele){
+      this.firstName = first;
+      this.lastName = last;
+      this.age = age;
+      this.elyecolor = ele;
+    }
+
+    Person.prototype.nationality = "English";
+
+    const myFather = new Person("John","Doe",50,"blue");
+    const myMother = new Person("Sally","Rally",48,"green");
+
+    document.getElementById("demo").innerHTML = 
+    "The nationality of  my father is "+ myFather.nationality;
+    
+    </script>
+  </body>
+</html>

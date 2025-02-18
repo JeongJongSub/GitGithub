@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>this2.html</title>
+</head>
+
+<body>
+  <script>
+    // let person = {
+    //   username: "코스모",
+    //   hello: function(){
+    //     setTimeout(function(){
+    //       console.log(this)
+    //       console.log(this.username)
+    //     }, 3000);
+    //   }
+
+    // }
+    
+    
+    person.hello();
+    let person = {
+      username: "코스모",
+      hello: function(){
+        setTimeout((function(){
+          console.log(this)
+          console.log(this.username)
+        }).bind(this), 3000);
+
+      }
+    }
+
+    person.hello();
+
+  </script>
+</body>
+
+</html>

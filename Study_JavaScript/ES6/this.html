@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    /*
+    function Person(username, password) {
+      this.username = username;
+      this.password = password;
+      this.walk = function () {
+        console.log(this === window); //여기서 this는 인스턴스화된 자기 자신 Person
+        console.log(this === person1);
+        console.log(`아이디:${this.username}, 비밀번호:${this.password}`);
+      };
+    }
+
+    const person1 = new Person('kim', 'kim1234');
+    console.log(person1.username);
+    person1.walk();
+    */
+
+    function Person(username) {//생성자 함수
+      this.username = username; //this는 Person
+      console.log(this.username); //this는 Person
+      //const this_ = this;
+
+      var nicknames = ['슈퍼맨', '능력자', '김종국'];
+
+      nicknames.map((function (nick) {
+        console.log(this.username + '>>>' + nick);//
+      }).bind(this));
+
+    }
+
+    var nicknames = new Person('김종국');
+
+    console.log('----------------------------------------')
+
+    /*리터럴 객체*/
+    /*
+    const obj = {
+      name: '코스모',
+      func: function () {
+        console.log(this.name);//코스모
+        console.log(this === window);//false
+        console.log(this === obj);//true
+
+      }
+
+    }
+
+    obj.func();//호출자가 obj
+    */
+    var obj = {
+      username: '코스모',
+      func: function () {
+        // const this_ = this;
+        const innerFunc = function () {
+
+          console.log(this.username);//undefind
+          console.log(this === window);//true
+          console.log(this === obj);//false
+        }.bind(this);
+        innerFunc();
+      }
+
+    }
+    obj.func();//
+
+
+    ////////////////////////////////////
+
+    
+
+
+
+
+
+  </script>
+</body>
+
+</html>

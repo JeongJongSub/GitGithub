@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>myPage.html</title>
+</head>
+<body>
+  <button>테스트용버튼</button>
+  
+  <!-- 오전에 배운것 복습 -->
+  <script>
+    /*ES6의 변수와 영역(Scope)*/
+    //ES5의 var는 '함수스코프'를 따른다.
+    //ES6의 변수는 '블록스코프'를 따른다. const와 let
+
+    //**호이스팅 : 변수의 정의가 그 범위에 따라 선언과 할당으로 분리되어
+    //            변수의 선언을 항상 컨텍스트 내의 최상위로 끌어올리는 것을 의미한다.
+
+    //[함수스코프]
+    //(hoisting) var scope1; 선언
+    function a() {
+      if(true) {
+        var scope1 = 'function';
+        //scope1 = 'function'; 할당
+      }
+      console.log(scope1);
+    }
+    a(); //'function'dl 출력이 된다.
+
+    //[블록스코프]
+    function b() {
+      if(true) {
+        const scope2 = 'function';
+      }
+      // console.log(scope2); //<-에러러
+    }
+    b(); //<-정의 되지 않았다고 뜬다.
+
+    /*const와 let의 차이점*/
+    const constA = 100;
+    // constA = 200; //<-에러 const는 값을 바꿀 수 없다.
+    console.log(`constA는 ${constA}`);
+
+    let letA = 100;
+    letA = 200;
+    console.log(`letA는 ${letA}`);
+
+    //const에서 참조형 데이타를 넣게 된다면
+    constB = [1,2,3,4,5];
+    console.log(`constB는: ${constB}`); // [1, 2, 3, 4, 5]
+
+    constB[1] = 1004;
+    console.log(`constB의 1번방 변경 시: ${constB}`);// [1, 1004, 3, 4, 5]
+    //>>> 참조형 데이타는 주소를 반환하니까. 주소는 바뀌지 않기때문
+
+    console.log('-----------------------------------------------------------')
+
+    /*this키워드에 대하여*/
+    //this는 객체를 가리키는 키워드. 즉 객체
+    //this는 호출 주체다. 호출한 주체가 없는경우 기본값으로 window객체다.
+
+    console.log(this === window)
+
+    console.log('------------------------------------------------------------')
+
+
+    var obj = {username : 'kim', 
+              func : function(){
+                console.log(this === window);
+                console.log(this === obj);
+                console.log(this.username);
+              }}
+    obj.func(); //this는 obj인 것을 알 수 있다.
+    
+    console.log('------------------------------------------------------------')
+    //그런데 함수를 변수에 할당하면
+    let print = obj.func;
+    print();//print는 지정된게 없으니 window객체
+
+    console.log('------------------------------------------------------------')
+    function print2() {
+      console.log(this);
+    }
+    print2(); // window객체
+
+    console.log('------------------------------------------------------------')
+    let btn = document.querySelector('button');
+    btn.addEventListener('click',function(){
+      console.log(this);
+      console.log(this === btn);
+    });
+    
+    console.log('------------------------------------------------------------')
+    /*bind() this를 지정할 수 있다.*/
+
+
+
+
+
+
+
+
+
+  </script>
+</body>
+</html>

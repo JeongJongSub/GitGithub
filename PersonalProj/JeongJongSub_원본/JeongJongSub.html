@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- 파비콘(Favicon)을 넣는 HTML코드 -->
+    <link rel="icon" href="JSFavicon_Circle.ico" type="image/x-icon">
+
+    <!-- BS5를 적용하는 코드, CDN (Content Delivery Network) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- FontAwesome 키 가져오기 -->
+    <script src="https://kit.fontawesome.com/2069c40a8e.js" crossorigin="anonymous"></script>
+
+    <!-- 텍스트 기반 챗봇 만들기 -->
+    <title>JeongJongSub - ImageGeneration</title>
+
+    <!-- CSS 외부로 적용하기 -->
+    <link rel="stylesheet" href="CSS_JeongJongSub.css">
+
+    <!-- JavaScript로 작성한 ChatGPT API 키 불러오기 -->
+    <script src="config.js"></script>
+
+    <!-- JavaScript 코드 추가하기 -->
+    <script>
+        // DALL·E 3 API로 이미지를 생성하는 코드
+        window.addEventListener('DOMContentLoaded', () => {
+            var apiKey = config.apiKey;
+            var dalle3Text = document.querySelector('#dalle3Text');
+            var dalle3Button = document.querySelector('#dalle3Button');
+            var dalle3Image = document.querySelector('#dalle3Image');
+            var modal = document.querySelector('#loadingModal');
+
+            // 이미지 생성 요청
+            dalle3Button.addEventListener('click', () => {
+                const description = dalle3Text.value.trim(); // 이미지 묘사 가져오기
+                if (!description) {
+                    alert("이미지 묘사를 입력해주세요.");
+                    return;
+                }
+
+                // 동양화 스타일을 묘사에 추가
+                const modifiedDescription = `${description}, in the style of traditional East Asian painting`;
+
+                // 전송 전 모달창 띄우기
+                modal.style.display = 'block';
+                modal.className += " show";
+                modal.setAttribute('data-backdrop', 'static');
+
+                // DALL·E 3 API로 이미지 요청
+                fetch('https://api.openai.com/v1/images/generations', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${apiKey}`
+                    },
+                    body: JSON.stringify({
+                        model: 'dall-e-3',
+                        prompt: modifiedDescription,
+                        n: 1,
+                        size: '1024x1024'
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // 이미지 생성 후 이미지 URL 가져오기
+                    const imageUrl = data.data[0].url;
+                    dalle3Image.src = imageUrl;
+
+                    // 모달창 닫기
+                    modal.style.display = 'none';
+                    modal.classList.remove('show');
+                })
+                .catch(error => {
+                    console.error("Error generating image:", error);
+                    alert("이미지 생성 중 오류가 발생했습니다.");
+                    modal.style.display = 'none'; // 오류 발생 시 모달 닫기
+                    modal.classList.remove('show');
+                });
+            });
+        });
+
+    </script>
+
+</head>
+
+<body>
+    <section>
+        <nav class="menu">
+            <a href="#"><i class="fas fa-bars"></i></a>
+            <a href="#"><i class="far fa-sticky-note"></i> </a>
+        </nav>
+
+        <article class="profile">
+            <!-- 텍스트 챗봇 -->
+            <div class="container">
+                <hr/>
+                <img src="DrawingDragon.png" id="dalle3Image" alt="AI 생성 이미지"  />
+                <h1>그려용</h1>
+                <h2>동양화 만 그려용</h2>
+                <button type="button" class="btnView" id="dalle3Button">이미지 생성</button>
+                <div class="mb-3 mt-3">
+                    <textarea type="text" id="dalle3Text" class="form-control" placeholder="무엇을 그려줄 까용..." rows="3" style="resize: vertical;"></textarea>
+                    <p class="powered">Powered by DALL-E 3</p>
+                </div>
+            </div>
+            
+
+        </article>
+
+        <hr>
+        
+
+        <!-- 연락처 목록  -->
+        <ul class="contact">
+            <li>
+                <i class="fab fab fab fa-github"></i>
+                <span><a href="https://github.com/JeongJongSub/mygit">Visit My github.</a></span>
+            </li>
+            <li>
+                <i class="fas far fa-envelope"></i>
+                <span>jeongjs501@naver.com</span>
+            </li>
+        </ul>
+    </section>
+
+    
+
+   
+
+
+<!-- 로딩 모달 -->
+<div id="loadingModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <div class="loading">
+                    <div class="font-weight-bolder text-black-50 mx-2">
+                        LOADING
+                    </div>
+                    <div class="item"></div>
+                    <div class="item"></div>
+                    <div class="item"></div>
+                    <div class="item"></div>
+                    <div class="item"></div>
+                    <div class="item"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+
+
+</html>

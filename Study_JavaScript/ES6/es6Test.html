@@ -275,6 +275,72 @@ console.log(object3);
 console.log(object3.company.contacts.tel);
 
 
+//////////////////////////////////////////////////////////////////////////////////////////
+//...(Sprad 연산자)는 반복가능한객체를 전개한다.
+console.log('--------------------------▼')
+//함수호출시 배열을 전달달
+var add3 = function add(a, b, c, d, e) {
+  return a + b + c + d + e;
+};
+var arrA=[1,2,3,4,5];
+// console.log(add3.apply(undefined,arrA));
+console.log(add3(...arrA));
+
+
+console.log('--------------------------▼')
+const add6 = (a,b,c,d,e) => {return a+b+c+d+e};
+const arrB = [1,2,3,4,5];
+console.log(add6(...arrB));
+
+const str = 'KOSMO';
+const arr = [ ... str];
+console.log(arr);//["K", "O", "S", "M", "O"]
+
+
+//////////////////////////////////////////////////////////////////////////////////////////
+
+const boards = {
+  username:'kim',
+  title:'제목1',
+  id:100,
+  comments:[
+    {id:1,comment:'댓글1',postdate:'2024-01-01'},
+    {id:2,comment:'댓글2',postdate:'2024-02-01'},
+    {id:3,comment:'댓글3',postdate:'2024-03-01'}
+
+]
+};
+
+console.log('--------------------------▼')
+//문1)코멘트 2번글의 comment를 comment second로 수정해라라
+//내 답안
+// console.log(boards.comments[1].comment='comment second')
+// console.log(boards)
+
+console.log('--------------------------▼')
+// //스프레드로 해보기
+const myList = ({...boards.comments[1]}.comment);
+const myQ = {...boards,comments:{...boards.comments}};
+console.log(myQ);
+console.log(myList);
+
+console.log('--------------------------▼')
+//답안
+const board2 = {
+  ...boards,
+  comments:boards.comments.map(comment=>comment.id === 2 ? {...comment,comment:"Comment Second"} : comment)
+  };
+console.log(board2)
+
+const board3 = {
+  ...board2,
+  title:'첫번째 제목입니다',
+  comments : boards.comments.map(comment=>comment.id === 3 ? {...comment,comment:"댓글 3번째 입니다",postdate:new Date().toISOString().substring(0,10)} : comment)
+}
+console.log(board3)
+
+
+
 
 
 </script>

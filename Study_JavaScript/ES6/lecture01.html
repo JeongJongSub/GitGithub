@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>lecture01.html</title>
 </head>
 <body>
   <!-- 프로토타입 공부용용 -->
@@ -213,26 +213,26 @@ console.log(username);
 //페이지 방식
   </script>
   <!-- 페이지 방식 : 아래 스크립트 위치가 중요하다. -->
-  <script src="a.js"></script>
-  <script src="c.js"></script>
-  <script src="b.js"></script>
+  <script src="./js/a.js"></script>
+  <script src="./js/c.js"></script>
+  <script src="./js/b.js"></script>
   <script>
     console.log(username);
   </script>
 
 <!-- 위 내용을 더 깔끔하게 모듈화로 묶어서 보내버리기 -->
   <script type="module">
-    import arr,{username,obj} from './exa.js';
+    import arr,{username,obj} from './js/exa.js';
     console.log(username);
     console.log(obj);
     console.log(arr)
     
-    import exb_username,{add,minus} from './exb.js';
+    import exb_username,{add,minus} from './js/exb.js';
     console.log(exb_username);
     console.log(add(10,20));
     console.log(minus(10,20));
 
-    import exc_username from './exc.js';
+    import exc_username from './js/exc.js';
     console.log(exc_username);
 
 
@@ -244,7 +244,7 @@ console.log(username);
   </script>
 
 <script type="module">
-  import './index.js'
+  import './js/index.js'
 
 
 //////////////////////////////////////////////////////////////////////////////////////////

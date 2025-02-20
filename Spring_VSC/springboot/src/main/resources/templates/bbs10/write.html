@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<title>write.html</title>
+<!--자바 스크립트에서 읽기용 그래서  AJAX요청시 요청헤더에 포함시기기 위함
+    	<meta th:name="${_csrf.parameterName}" th:content="${_csrf.token}">
+    	const csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('content');
+    	fetch(url,
+							{method:"DELETE"
+								,headers:{
+									"Content-Type":"application/json",
+								 	"X-CSRF-TOKEN":csrfToken  // CSRF 토큰을 사용하는 경우 추가
+									}
+							})
+        -->
+<th:block th:replace="~{layout/config::config}"></th:block>
+<link rel="stylesheet" th:href="@{styles/common.css}">
+</head>
+<body>
+	<div class="container">
+		<div class="container-fluid">
+			<th:block th:replace="~{layout/header::header}"></th:block>
+
+			<div style="margin-bottom: 55px"></div>
+			<!-- fixed-top일때 -->
+			<!-- 상단 네비게이션 끝 -->
+			<!--  컨텐츠 시작 -->
+
+			<fieldset class="border rounded-3 p-3">
+				<legend class="float-none w-auto px-3">글 등록</legend>
+				<form method="post" th:action="@{/bbs/write}">
+					<!--타임리프는 csrf활성화(기본값이 활성화)시 아래 토큰값을 보내지 않아도 자동으로 아래 히든 타입이 추가되서 전송된다
+					    ※단,ajax나 자바스크립트로 요청시에는 반드시 추가해야 한다-->
+					<!--/* 
+					<input type="hidden" th:if="${_csrf !=null}" th:name="${_csrf.parameterName}"  th:value="${_csrf.token}"/>
+					 */-->
+					<div class="mb-3 mt-3">
+						<label for="title" class="form-label">제목</label> <input type="text"
+							class="form-control" id="title" placeholder="제목 입력?" name="title">
+					</div>
+					<div class="mb-3">
+						<label for="content">내용</label>
+						<textarea class="form-control" rows="5" id="content" name="content"></textarea>
+					</div>				
+
+					<button type="submit" class="btn btn-warning">등록</button>
+				</form>
+				<div class="d-flex justify-content-center d-none" id="errorMsg">
+					<div class="alert alert-success alert-dismissible my-2 w-50">
+						<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+						<strong>등록 실패!</strong> [[${errorMessage}]]
+					</div>
+				</div>
+			</fieldset>
+			<!--  컨텐츠 끝 -->
+			<!-- 푸터 시작 -->
+			<th:block th:replace="~{layout/footer::footer}"></th:block>
+			<!-- 푸터 끝 -->
+		</div>
+		<!-- container-fluid -->
+	</div>
+	<!-- container -->
+	<script th:inline="javascript">
+		if('[[${errorMessage}]]' != 'null'){
+			const div=document.querySelector('#errorMsg');
+			div.classList.add("d-block");
+			div.classList.remove("d-none");
+		}
+	</script>
+</body>
+</html>

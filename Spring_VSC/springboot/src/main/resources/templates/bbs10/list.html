@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+	<head>
+		<title>list.html</title>		
+		<th:block th:replace="~{layout/config::config}"></th:block>
+		<link rel="stylesheet" th:href="@{styles/common.css}">
+		<style>
+			a{
+				text-decoration:none;
+				color:white
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="container-fluid">
+				<th:block th:replace="~{layout/header::header}"></th:block>
+				
+				<div style="margin-bottom:55px"></div><!-- fixed-top일때 -->
+				<!-- 상단 네비게이션 끝 -->
+				<!--  컨텐츠 시작 -->
+				
+				<fieldset class="border rounded-3 p-3">
+					<legend class="float-none w-auto px-3">게시글 목록</legend>
+					<div class="my-2 text-end" >						
+						<a th:href="@{/bbs/write}" class="btn btn-danger">글 등록</a>				
+					</div>
+					<table class="table table-dark table-hover text-center">
+						<thead>
+							<tr>
+								<th class="col-1">번호</th>
+								<th >제목</th>
+								<th class="col-2">글쓴이</th>
+								<th class="col-2">작성일</th>								
+							</tr>
+						</thead>
+						<tbody class="table-sm down-file-body">
+							
+							<tr th:if="${#lists.isEmpty(bbses)}">
+								<td colspan="4">등록된 글이 없습니다.</td>
+							</tr>							
+							<tr th:each="bbs:${bbses}" th:object="${bbs}">
+								<td>[[*{id}]]</td>
+								<td class="text-start"><a th:href="@{|/bbs/*{id}|}">[[*{title}]] <span class="badge rounded-pill text-bg-danger">3</span></a></td>
+								<td th:text="*{usersDto.name}">김길동</td>
+								<td th:text="*{#temporals.format(postDate,'yyyy-MM-dd')}">2025.1.1</td>
+							</tr>
+						</tbody>
+					</table>
+					<!-- 페이징 출력 -->
+					<div th:utext="${paging}">1 2 3 4 5 6 7 8 9 10</div>
+					<!-- 검색 UI -->
+					<form method="post" th:action="@{/bbs/search}"	class="row justify-content-center">
+						<div class="col-5">
+							<input type="text" class="form-control mx-2"
+								placeholder="검색어를 입력하세요" name="searchWord" />
+						</div>
+						<div class="col-auto">
+							<button type="submit" class="btn btn-primary">검색</button>
+						</div>
+					</form>
+					
+				</fieldset>							
+				<!--  컨텐츠 끝 -->
+				<!-- 푸터 시작 -->
+				<th:block th:replace="~{layout/footer::footer}"></th:block>
+				<!-- 푸터 끝 -->
+			</div><!-- container-fluid -->
+		</div><!-- container -->
+	</body>
+</html>

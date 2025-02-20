@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+	<head>
+		<title>database.html</title>		
+		<th:block th:replace="~{layout/config::config}"></th:block>
+		<link rel="stylesheet" th:href="@{styles/common.css}">
+	</head>
+	<body>
+		<div class="container">
+			<div class="container-fluid">
+				<th:block th:replace="~{layout/header::header}"></th:block>
+				
+				<div style="margin-bottom:55px"></div><!-- fixed-top일때 -->
+				<!-- 상단 네비게이션 끝 -->
+				<!--  컨텐츠 시작 -->
+				
+				<fieldset class="border rounded-3 p-3">
+					<legend class="float-none w-auto px-3">Database</legend>
+					<h1 class="display-6"><a th:href="@{/database/hikariCP.do}">데이타 베이스 연결</a></h1>
+					<kbd th:if="${message !=null}" th:text="${message}"></kbd>
+				</fieldset>							
+				<!--  컨텐츠 끝 -->
+				<!-- 푸터 시작 -->
+				<th:block th:replace="~{layout/footer::footer}"></th:block>
+				<!-- 푸터 끝 -->
+			</div><!-- container-fluid -->
+		</div><!-- container -->
+	</body>
+</html>

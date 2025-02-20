@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+	<head>
+		<title>list.html</title>		
+		<th:block th:replace="~{layout/config::config}"></th:block>
+		<link rel="stylesheet" th:href="@{styles/common.css}">
+	</head>
+	<body>
+		<div class="container">
+			<div class="container-fluid">
+				<th:block th:replace="~{layout/header::header}"></th:block>
+				
+				<div style="margin-bottom:55px"></div><!-- fixed-top일때 -->
+				<!-- 상단 네비게이션 끝 -->
+				<!--  컨텐츠 시작 -->
+				
+				<fieldset class="border rounded-3 p-3">
+					<legend class="float-none w-auto px-3">회원 목록</legend>
+					<div class="my-2 text-end" >
+						<!-- /* 
+						@{url패턴(${변수})}링크 선택자에서 패턴을 함수 형식으로 사용시
+						${변수}처리 가능
+						단,@{url패턴?${변수}} 패턴을 함수 형식으로 미 사용시 ${변수}는 단순 문자열로 처리
+						
+						예
+						<a th:with="paging=${param.paging != null ? '?paging=' + param.paging  : ''}" th:href="@{/users/signup?${paging}}" class="btn btn-danger">회원 등록</a>
+						이
+						<a href="/users/signup?${paging}" class="btn btn-danger">회원 등록</a>으로
+						렌더링 된다					
+						
+						 */ -->	
+						<!-- /*
+						<a th:href="@{/users/signup(paging=${param.paging})}" class="btn btn-danger">회원 등록</a>
+						*/ --> 
+						<!-- 
+							페이징 미 적용시 http://localhost:8080/users/signup?paging=
+							"?paging=" 없애기
+							즉
+							http://localhost:8080/users/signup
+							적용시는 
+							http://localhost:8080/users/signup?paging=y 
+						 --> 					
+						<a th:with="paging=${param.paging != null ? '?paging=' + param.paging  : ''}" th:href="${'/users/signup'+paging}" class="btn btn-danger">회원 등록</a>
+						
+					
+					</div>
+					<table class="table table-dark table-hover text-center">
+						<thead>
+							<tr>
+								<th class="col-1">아이디</th>
+								<th class="col-2">비밀번호</th>
+								<th class="col-2">이름</th>
+								<th>가입일</th>
+							</tr>
+						</thead>
+						<tbody class="table-sm down-file-body">
+							
+							<tr th:if="${#lists.isEmpty(users)}">
+								<td colspan="4">등록된 사용자가 없습니다.</td>
+							</tr>							
+							<tr th:each="user:${users}" th:object="${user}">
+								<td>
+								<!-- /* 
+								<a th:href="@{'/users/' +*{username}}">[[*{username}]]</a>
+								<a th:href="@{'/users/' +${user.username}}">[[*{username}]]</a>
+								*/ -->
+								<a th:href="@{|/users/*{username}|}">[[*{username}]]</a>
+								
+								</td>
+								<td th:text="*{password}">1234</td>
+								<td th:text="*{name}">김길동</td>
+								<td th:text="*{#temporals.format(regiDate,'yyyy-MM-dd')}">2025.1.1</td>
+							</tr>
+						</tbody>
+					</table>
+					<!-- 페이징 출력 -->
+					<div th:utext="${paging}">1 2 3 4 5 6 7 8 9 10</div>
+					<!-- 검색 UI -->
+					<form method="post" th:action="@{/users/search}"	class="row justify-content-center">
+						<div class="col-1">
+							<select class="form-control" name="searchColumn">
+								<option value="name">이름</option>
+								<option value="username">아이디</option>
+							</select>
+						</div>
+						<div class="col-5">
+							<input type="text" class="form-control mx-2"
+								placeholder="검색어를 입력하세요" name="searchWord" />
+						</div>
+						<div class="col-auto">
+							<button type="submit" class="btn btn-primary">검색</button>
+						</div>
+					</form>
+					
+				</fieldset>							
+				<!--  컨텐츠 끝 -->
+				<!-- 푸터 시작 -->
+				<th:block th:replace="~{layout/footer::footer}"></th:block>
+				<!-- 푸터 끝 -->
+			</div><!-- container-fluid -->
+		</div><!-- container -->
+	</body>
+</html>

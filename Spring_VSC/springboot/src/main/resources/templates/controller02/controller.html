@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+	<head>
+		<title>controller.html</title>		
+		<th:block th:replace="~{layout/config::config}"></th:block>
+	</head>
+	<body>
+		<div class="container">
+			<div class="container-fluid">
+				<th:block th:replace="~{layout/header::header}"></th:block>
+				
+				<div style="margin-bottom:55px"></div><!-- fixed-top일때 -->
+				<!-- 상단 네비게이션 끝 -->
+				<!--  컨텐츠 시작 -->
+				
+				<fieldset class="border rounded-3 p-3">
+					<legend class="float-none w-auto px-3">Controller <span class="small bg-danger text-white" th:text="${message}?:_">여기에 메시지가 뿌려집니다</span></legend>
+					<h1 class="display-6"  >하나의 컨트롤러 클래스,하나의 컨트롤러 메소드로 여러 요청 처리하기 1(패스 파라미터로 구분)</h1>
+					
+					<ul class="list-group list-group-numbered">
+						<li class="list-group-item"><a th:href="@{/controller/oneclass/list.do}">목록 요청</a></li>
+						<li class="list-group-item"><a th:href="@{/controller/oneclass/edit.do}">수정 요청</a></li>
+						<li class="list-group-item"><a th:href="@{/controller/oneclass/delete.do}">삭제 요청</a></li>
+						<li class="list-group-item"><a th:href="@{/controller/oneclass/view.do}">상세 요청</a></li>
+					</ul>
+					
+					<h1 class="display-6">하나의 컨트롤러 클래스,하나의 컨트롤러 메소드로 여러 요청 처리하기 2(쿼리스트링으로 구분)</h1>
+				
+					<ul class="list-group list-group-numbered">
+						<!-- @{url패턴(파라미터명1='값1',파라미터명2='값2',...)} 
+						     위는 쿼리스트링으로 변환된다
+						     url패턴?파라미터명1=값1&파라미터명2=값2&....
+						     즉 url패턴을 함수처럼 사용한다
+						-->
+						<li class="list-group-item"><a th:href="@{/controller/oneclassparam/crud.do(crud='list')}">목록 요청</a></li>
+						<li class="list-group-item"><a th:href="@{/controller/oneclassparam/crud.do(crud='edit')}">수정 요청</a></li>
+						<li class="list-group-item"><a th:href="@{/controller/oneclassparam/crud.do(crud='delete')}">삭제 요청</a></li>
+						<li class="list-group-item"><a th:href="@{/controller/oneclassparam/crud.do(crud='view')}">상세 요청</a></li>
+					</ul>
+					<h1 class="display-6"  >하나의 컨트롤러 클래스,여러개의 컨트롤러 메소드로 여러 요청 처리하기</h1>				
+					<ul class="list-group list-group-numbered">						
+						<li class="list-group-item"><a th:href="@{/controller/multimethod/list.do}">목록 요청</a></li>
+						<li class="list-group-item"><a th:href="@{/controller/multimethod/edit.do}">수정 요청</a></li>
+						<li class="list-group-item"><a th:href="@{/controller/multimethod/delete.do}">삭제 요청</a></li>
+						<li class="list-group-item"><a th:href="@{/controller/multimethod/view.do}">상세 요청</a></li>
+					</ul>
+					
+				</fieldset>							
+				<!--  컨텐츠 끝 -->
+				<!-- 푸터 시작 -->
+				<th:block th:replace="~{layout/footer::footer}"></th:block>
+				<!-- 푸터 끝 -->
+			</div><!-- container-fluid -->
+		</div><!-- container -->
+	</body>
+</html>

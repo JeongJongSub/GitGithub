@@ -95,3 +95,7 @@ function xx(){
 let qq,ww,ee;
 [qq,ww,ee] = xx()
 console.log(qq,ww,ee);
+
+
+console.log('\n------------------------------------------------------\n')
+// 분명히 넣어 놨는데?

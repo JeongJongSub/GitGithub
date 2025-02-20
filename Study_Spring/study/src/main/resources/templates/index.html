@@ -18,6 +18,32 @@
         <legend class="float-none w-auto px-3">스프링 부트 프레임워크</legend>
 
       </fieldset>	
+
+
+
+
+
+      <h1>Todo List</h1>
+      <form th:action="@{/todos}" method="post" th:object="${newTodo}">
+          <input type="text" th:field="*{task}" placeholder="Add a new task">
+          <button type="submit">Add</button>
+      </form>
+      
+      <ul>
+          <li th:each="todo : ${todos}">
+              <span th:text="${todo.task}"></span>
+              <a th:href="@{/todos/complete/{id}(id=${todo.id})}">
+                  <span th:text="${todo.completed} ? 'Undo' : 'Complete'"></span>
+              </a>
+              <a th:href="@{/todos/delete/{id}(id=${todo.id})}">Delete</a>
+          </li>
+      </ul>
+
+
+
+
+
+
       <!--  컨텐츠 끝 -->
       <!-- 푸터 시작 -->
       <th:block th:replace="~{layout/footer::footer}"></th:block>

@@ -34,8 +34,8 @@ spring:
   datasource:
     driver-class-name: oracle.jdbc.OracleDriver
     url: jdbc:oracle:thin:@localhost:1521/XEPDB1
-    username: SPRING
-    password: SPRING
+    username: TODO
+    password: TODO
     #스프링 부트의 디폴트 커넥션 풀인 Hikari 디폴트 설정
     hikari:
       auto-commit: true

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- 파비콘(Favicon)을 넣는 HTML코드 -->
+  <link rel="icon" href="Favicon/JSFavicon_Circle.ico" type="image/x-icon">
+  <!-- BS5를 적용하는 코드, CDN (Content Delivery Network) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- FontAwesome 키 가져오기 -->
+  <script src="https://kit.fontawesome.com/2069c40a8e.js" crossorigin="anonymous"></script>
+  <!-- CSS 외부로 적용하기 -->
+  <link rel="stylesheet" href="CSS/MySecondProject.css">
+  <!-- JavaScript로 작성한 ChatGPT API 키 불러오기 -->
+  <script src="JS/config.js"></script>
+  <title>MySecondProject</title>
+
+<!-- 임시 CSS태그 -->
+<style>
+  section {
+    width: 90%;
+    background-color: aqua;
+  }
+
+/* row축으로 작성하게 되면 이용할때 모바일 <-> 데스크톱 반응형 만들 수 있는듯 */
+/*  */
+.flex-container1{
+  /* 아래 코드 작성해야 flexbox가 적용 됨 */
+  display: flex;
+
+  /* flex-direction : row, column이 있음 */
+  /* flex-direction: row; */
+
+  /* flex-wrap속성 : 플렉스라인에 공간이 충분하지 않을때 사용하는 것 */
+  /* nowrap을 주게 되면 아이템들이 컨테이너의 반응에 맞춰 줄어든다. */
+  /* wrap을 주면 블록들이 아래로 내려간다. */
+  /* flex-wrap: wrap; */
+
+  /* flex-flow속성 : flex-direction과 flex-wrap을 동시에 주는 속성성 */
+  flex-flow: row wrap;
+  
+  /* justify-content : 가로 정렬 (주축방향 정렬)*/
+  justify-content: center;
+  /* justify-content: space-around; */
+  /* justify-content: space-between; */
+  /* justify-content: space-evenly; */
+  
+  /* align-items : 아이템 세로 정렬 (반주축방향 정렬)*/
+  align-items: center;
+  /* align-items: stretch; */
+
+  /* align-contents : 세로 정렬 (반주축방향 정렬)*/
+  /* align-content: center; */
+  /* align-content: stretch; */
+
+
+  height: 1000px;
+  
+  background-color: dodgerblue;
+
+
+}
+
+.flex-container2{
+  /* 아래 코드 작성해야 flexbox가 적용 됨 */
+  display: flex;
+  /* 아래 코드로 행축인지 열축인지 정할 수 있음음 */
+  flex-direction: column;
+  background-color: dodgerblue;
+  flex-wrap: wrap;
+
+}
+
+
+/* 반응형 Flexbox : row -> column*/
+@media(max-width:1000px){
+  .flex-container1{
+    flex-direction: column;
+  }
+}
+
+@media(max-width : 1000px){
+  .flex-container1{
+    flex:50%;
+    max-width:50%;
+  }
+}
+
+
+/* flexbox test design */
+.flex-container1 > div{
+  background-color: bisque;
+  width: 100px;
+  margin: 10px;
+  text-align: center;
+  line-height: 75px;
+  font-size: 30px;
+}
+.flex-container2 > div{
+  background-color: bisque;
+  width: 100px;
+  margin: 10px;
+  text-align: center;
+  line-height: 75px;
+  font-size: 30px;
+}
+
+</style>
+
+
+
+</head>
+<body>
+
+  <h1> 잠시 공부중 ... </h1>
+  CSS Flexbox구성 요소
+  - Flex container
+  - Flex Items
+
+  <div class="flex-container1">
+    <div>0 #텍스트를</div>
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+  </div>
+
+<br>
+  
+  <div class="flex-container2">
+    <div>5</div>
+    <div>6</div>
+    <div>7</div>
+    <div>8</div>
+    <div>9</div>
+  </div>
+
+<hr>
+<h1>API 테스트</h1>
+<h3> 브이월드 API 작동하는지 확인인</h3>
+
+
+
+
+
+
+
+  <hr>
+
+  <section>
+    <!-- 상단메뉴뉴 -->
+    <nav class="menu">
+        <a href="#"><i class="fas fa-bars"></i></a>
+        <a href="#"><i class="far fa-sticky-note"></i> </a>
+    </nav>
+
+    <article class="profile">
+        <!-- 텍스트 챗봇 -->
+        <div class="container">
+            <hr/>
+            <img src="Images/DrawingDragon.png" id="dalle3Image" alt="AI 생성 이미지"  />
+            <h1>개인프로젝트트</h1>
+            <h2>부제목목</h2>
+            
+        </div>
+        
+
+    </article>
+  </section>
+
+
+
+
+
+
+
+    <!-- 나중에 붙여넣을 목록록 -->
+    <hr>
+    <!-- <button type="button" class="btnView" id="dalle3Button">이미지 생성</button> -->
+            <!-- <div class="mb-3 mt-3">
+                <textarea type="text" id="dalle3Text" class="form-control" placeholder="무엇을 그려줄 까용..." rows="3" style="resize: vertical;"></textarea>
+                <p class="powered">Powered by DALL-E 3</p>
+            </div> -->
+</body>
+</html>

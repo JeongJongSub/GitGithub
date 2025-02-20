@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RWD_Study</title>
+
+<!-- CSS -->
+<style>
+  *{
+    box-sizing: border-box;
+  }
+
+  .header{
+    border: 1px solid greenyellow;
+    padding: 15px;
+
+  }
+
+  .menu{
+    width: 25%;
+    float: left;
+    padding: 15px;
+    border: 1px solid red;
+  }
+
+  .main{
+    width: 75%;
+    float: left;
+    padding: 15px;
+    border: 1px solid blue;
+
+  }
+
+  body{
+    background-color: lightgreen;
+  }
+
+  .navbar{
+    display: flex;
+    justify-content: space-around;
+    order: 1;
+    background-color: rgb(62, 62, 62);
+    
+  }
+  .navbar a{
+    color: white;
+    text-decoration: none;
+  }
+
+  @media only screen and (max-width:600px) {
+    body{
+      background-color: lightblue;
+    }
+    
+    .navbar{
+      order: 2;
+      justify-content: space-evenly;
+      position: fixed;
+      bottom: 0;
+      background-color: rgb(62, 62, 62);
+      width: 100%;
+    }
+    .navbar a{
+      color: white;
+      text-decoration: none;
+    }
+    
+
+  }
+
+
+
+
+
+</style>
+</head>
+
+<body>
+  <!-- 반응형 웹페이지 연습하기 -->
+  <!-- 네비게이션바 내가 원하는 형태로 만들기(인터렉티브 위<->아래) -->
+  <div class="header">
+    <h1>MainPage</h1>
+  </div>
+
+  <!-- Navigation Bar -->
+  <div class="navbar">
+    <a href="#">Link1</a>
+    <a href="#">Link2</a>
+    <a href="#">Link3</a>
+    <a href="#">Link4</a>
+  </div>
+
+  <div class="menu">
+    <ul>
+      <li>The first</li>
+      <li>The City</li>
+      <li>Combination Pizza</li>
+      <li>Chocolist</li>
+    </ul>
+  </div>
+
+  <div class="main">
+    <h1>The Combination Pizza</h1>
+    <p>alskdjfl aslkdjflk ksjd kiu slkdjq ik kslidf ;lkjlklaskd kjladLKJFLAKSDJF;AJGj;ck;</p>
+    <p>alsdkjflskdsknfllsd lkjsdlkfjlkqjslkm.sdj;kjf;smdf,sknfllsd lkjsdlkfjlkqjslkm.sdj;kjf;smdf,sknfllsd lkjsdlkfjlkqjslkm.sdj;kjf;smdf,sknfllsd lkjsdlkfjlkqjslkm.sdj;kjf;smdf,sknfllsd lkjsdlkfjlkqjslkm.sdj;kjf;smdf,sknfllsd lkjsdlkfjlkqjslkm.sdj;kjf;smdf</p>
+
+  </div>
+
+
+
+
+</body>
+
+</html>

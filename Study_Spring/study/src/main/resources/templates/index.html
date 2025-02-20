@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" lang="en">
+<head>
+  
+  <title>template.html</title>
+  <link rel="stylesheet" th:href="@{/styles/common.css}">
+  <th:block th:replace="~{layout/config::config}"></th:block>
+</head>
+<body>
+  <!-- 상단 네비게이션 시작 -->
+  <div class="container">
+    <div class="container-fluid">
+      <th:block th:replace="~{layout/header::header}"></th:block>
+      <div style="margin-bottom:55px"></div><!-- fixed-top일때 -->
+      <!-- 상단 네비게이션 끝 -->
+      <!--  컨텐츠 시작 -->
+      <fieldset class="border rounded-3 p-3">
+        <legend class="float-none w-auto px-3">스프링 부트 프레임워크</legend>
+
+      </fieldset>	
+      <!--  컨텐츠 끝 -->
+      <!-- 푸터 시작 -->
+      <th:block th:replace="~{layout/footer::footer}"></th:block>
+      <!-- 푸터 끝 -->
+    </div><!-- container-fluid -->
+  </div><!-- container -->
+</body>
+</html>
